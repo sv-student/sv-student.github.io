@@ -90,7 +90,12 @@
     scroll-behavior: smooth;
   }
 }
-
+.cat-container img {
+  width: 300px;
+  display: block;
+  margin: 0 auto;
+  border: 2px solid #ffffff; 
+}
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);

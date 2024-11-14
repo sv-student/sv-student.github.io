@@ -7,12 +7,12 @@ var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["Tiny", "Cute", "Fluffy", "Silly", "Orange", "Angry"],
     datasets: [{
       label: "Revenue",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: [0, 0, 0, 0, 0, 0],
     }],
   },
   options: {
@@ -31,7 +31,7 @@ var myLineChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
+          max: 50,
           maxTicksLimit: 5
         },
         gridLines: {
@@ -42,5 +42,26 @@ var myLineChart = new Chart(ctx, {
     legend: {
       display: false
     }
+  }
+});
+
+
+window.addEventListener("DOMContentLoaded", async function fetchTagCountsAndUpdateChart() {
+  const tags = ["tiny", "cute", "fluffy", "silly", "orange", "angry"]; 
+  const tagCounts = []; 
+
+  try {
+      for (const tag of tags) {
+          // Fetch the images for the current tag
+          const response = await fetch(`https://cataas.com/api/cats?tags=${tag}`);
+          const images = await response.json();
+          tagCounts.push(images.length); // Use the length of the returned array as the count
+      }
+
+      // Update the chart with the fetched data
+      myLineChart.data.datasets[0].data = tagCounts;
+      myLineChart.update();
+  } catch (error) {
+      console.error("Failed to fetch data for tags:", error);
   }
 });

@@ -6,7 +6,23 @@
     // 
 // Scripts
 // 
+window.addEventListener("DOMContentLoaded", function fetchCatImageXHR() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://cataas.com/cat", true); // Fetch a random cat image
+    xhr.responseType = "blob"; // Ensure the response is an image
 
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            const imgURL = URL.createObjectURL(xhr.response);
+            const catDiv = document.getElementById("cat");
+            catDiv.innerHTML = `<img src="${imgURL}" alt="Random Cat Image" />`;
+        } else {
+            console.error("Failed to load cat image.");
+        }
+    };
+
+    xhr.send();
+});
 window.addEventListener('DOMContentLoaded', event => {
 
     // Toggle the side navigation
