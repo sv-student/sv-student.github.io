@@ -7,9 +7,9 @@ var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["Tiny", "Cute", "Fluffy", "Silly", "Orange", "Angry"],
+    labels: ["Tiny", "Cute", "Fluffy", "Silly", "Orange", "Poptart"],
     datasets: [{
-      label: "Revenue",
+      label: "Tags",
       backgroundColor: "rgba(2,117,216,1)",
       borderColor: "rgba(2,117,216,1)",
       data: [0, 0, 0, 0, 0, 0],
@@ -47,7 +47,7 @@ var myLineChart = new Chart(ctx, {
 
 
 window.addEventListener("DOMContentLoaded", async function fetchTagCountsAndUpdateChart() {
-  const tags = ["tiny", "cute", "fluffy", "silly", "orange", "angry"]; 
+  const tags = ["tiny", "cute", "fluffy", "silly", "orange", "poptart"]; 
   const tagCounts = []; 
 
   try {
